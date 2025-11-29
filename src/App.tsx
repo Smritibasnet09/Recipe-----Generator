@@ -3,7 +3,14 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
+import { Header } from "@/components/Header";
+import { Navigation } from "@/components/Navigation";
+import Home from "./pages/Home";
+import Generate from "./pages/Generate";
+import Recipe from "./pages/Recipe";
+import Chat from "./pages/Chat";
+import Saved from "./pages/Saved";
+import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -14,11 +21,21 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <div className="min-h-screen flex flex-col">
+          <Header />
+          <main className="flex-1">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/generate" element={<Generate />} />
+              <Route path="/recipe" element={<Recipe />} />
+              <Route path="/chat" element={<Chat />} />
+              <Route path="/saved" element={<Saved />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </main>
+          <Navigation />
+        </div>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
