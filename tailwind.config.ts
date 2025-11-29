@@ -49,8 +49,8 @@ export default {
         },
       },
       fontFamily: {
-        display: ["Playfair Display", "serif"],
-        sans: ["Inter", "sans-serif"],
+        display: ["Cormorant Garamond", "serif"],
+        sans: ["Outfit", "sans-serif"],
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
