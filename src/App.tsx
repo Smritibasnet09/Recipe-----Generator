@@ -11,6 +11,9 @@ import Recipe from "./pages/Recipe";
 import Chat from "./pages/Chat";
 import Saved from "./pages/Saved";
 import Profile from "./pages/Profile";
+import MealTracker from "./pages/MealTracker";
+import Nutrients from "./pages/Nutrients";
+import Suggestions from "./pages/Suggestions";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -31,6 +34,9 @@ const App = () => (
               <Route path="/chat" element={<Chat />} />
               <Route path="/saved" element={<Saved />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/tracker" element={<MealTracker />} />
+              <Route path="/nutrients" element={<Nutrients />} />
+              <Route path="/suggestions" element={<Suggestions />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
