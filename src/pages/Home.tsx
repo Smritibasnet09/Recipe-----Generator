@@ -61,9 +61,9 @@ export default function Home() {
               Generate Recipe
             </Button>
           </Link>
-          <Link to="/chat">
+          <Link to="/tracker">
             <Button size="lg" variant="secondary" className="rounded-xl gap-2 shadow-soft hover:shadow-medium transition-all">
-              Ask Chef AI
+              Track Meals
             </Button>
           </Link>
         </div>
