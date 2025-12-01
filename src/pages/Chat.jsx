@@ -4,11 +4,6 @@ import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { Send, Bot, User } from "lucide-react";
 
-type Message = {
-  role: "user" | "assistant";
-  content: string;
-};
-
 const quickSuggestions = [
   "What can I make with chicken?",
   "How do I cook rice perfectly?",
@@ -17,14 +12,14 @@ const quickSuggestions = [
 ];
 
 export default function Chat() {
-  const [messages, setMessages] = useState<Message[]>([
+  const [messages, setMessages] = useState([
     {
       role: "assistant",
       content: "Hi! I'm Chef AI, your personal cooking assistant. How can I help you today?",
     },
   ]);
   const [input, setInput] = useState("");
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -37,13 +32,13 @@ export default function Chat() {
   const handleSend = () => {
     if (!input.trim()) return;
 
-    const userMessage: Message = { role: "user", content: input };
+    const userMessage = { role: "user", content: input };
     setMessages((prev) => [...prev, userMessage]);
     setInput("");
 
     // Simulate AI response
     setTimeout(() => {
-      const aiMessage: Message = {
+      const aiMessage = {
         role: "assistant",
         content: "That's a great question! Based on what you've told me, I'd recommend trying a simple stir-fry. It's quick, healthy, and you can use whatever vegetables you have on hand. Would you like me to generate a specific recipe for you?",
       };
@@ -51,7 +46,7 @@ export default function Chat() {
     }, 1000);
   };
 
-  const handleSuggestion = (suggestion: string) => {
+  const handleSuggestion = (suggestion) => {
     setInput(suggestion);
   };
 
