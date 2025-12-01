@@ -5,25 +5,17 @@ import { Clock, Trash2, BookmarkCheck } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 
-type SavedRecipe = {
-  id: number;
-  title: string;
-  time: string;
-  difficulty: string;
-  image: string;
-};
-
-const initialRecipes: SavedRecipe[] = [
+const initialRecipes = [
   { id: 1, title: "Garlic Butter Pasta", time: "25 min", difficulty: "Easy", image: "🍝" },
   { id: 2, title: "Fresh Garden Salad", time: "10 min", difficulty: "Easy", image: "🥗" },
   { id: 3, title: "Chocolate Brownies", time: "40 min", difficulty: "Medium", image: "🍫" },
 ];
 
 export default function Saved() {
-  const [recipes, setRecipes] = useState<SavedRecipe[]>(initialRecipes);
+  const [recipes, setRecipes] = useState(initialRecipes);
   const { toast } = useToast();
 
-  const handleDelete = (id: number) => {
+  const handleDelete = (id) => {
     setRecipes(recipes.filter((recipe) => recipe.id !== id));
     toast({
       title: "Recipe removed",
