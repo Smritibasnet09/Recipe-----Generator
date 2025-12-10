@@ -13,10 +13,60 @@ const categories = [
 ];
 
 const popularRecipes = [
-  { title: "Quick Pasta Carbonara", time: "15 min", difficulty: "Easy", image: "🍝" },
-  { title: "Fresh Garden Salad", time: "10 min", difficulty: "Easy", image: "🥗" },
-  { title: "Homemade Pizza", time: "45 min", difficulty: "Medium", image: "🍕" },
-  { title: "Chocolate Chip Cookies", time: "30 min", difficulty: "Easy", image: "🍪" },
+  { 
+    id: 1,
+    title: "Creamy Tuscan Chicken", 
+    time: "35 min", 
+    difficulty: "Medium", 
+    image: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=400&h=300&fit=crop",
+    servings: 4,
+    calories: 420
+  },
+  { 
+    id: 2,
+    title: "Mediterranean Quinoa Bowl", 
+    time: "25 min", 
+    difficulty: "Easy", 
+    image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=300&fit=crop",
+    servings: 2,
+    calories: 380
+  },
+  { 
+    id: 3,
+    title: "Garlic Butter Salmon", 
+    time: "20 min", 
+    difficulty: "Easy", 
+    image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&h=300&fit=crop",
+    servings: 2,
+    calories: 450
+  },
+  { 
+    id: 4,
+    title: "Thai Basil Stir Fry", 
+    time: "15 min", 
+    difficulty: "Easy", 
+    image: "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400&h=300&fit=crop",
+    servings: 3,
+    calories: 320
+  },
+  { 
+    id: 5,
+    title: "Classic Beef Tacos", 
+    time: "30 min", 
+    difficulty: "Easy", 
+    image: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&h=300&fit=crop",
+    servings: 4,
+    calories: 380
+  },
+  { 
+    id: 6,
+    title: "Mushroom Risotto", 
+    time: "45 min", 
+    difficulty: "Medium", 
+    image: "https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=400&h=300&fit=crop",
+    servings: 4,
+    calories: 400
+  },
 ];
 
 export default function Home() {
@@ -90,33 +140,44 @@ export default function Home() {
 
         {/* Popular Recipes */}
         <section className="space-y-4">
-          <h2 className="text-2xl font-display font-bold text-foreground">Popular Recipes</h2>
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="flex items-center justify-between">
+            <h2 className="text-2xl font-display font-bold text-foreground">Popular Recipes</h2>
+            <Link to="/saved" className="text-sm text-primary hover:underline font-medium">
+              View All
+            </Link>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {popularRecipes.map((recipe) => (
-              <Card
-                key={recipe.title}
-                className="group cursor-pointer hover:shadow-medium transition-all duration-300 border-border overflow-hidden"
-              >
-                <CardContent className="p-4 flex gap-4">
-                  <div className="h-20 w-20 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center text-4xl flex-shrink-0">
-                    {recipe.image}
-                  </div>
-                  <div className="flex flex-col justify-center flex-1 min-w-0">
-                    <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors truncate">
-                      {recipe.title}
-                    </h3>
-                    <div className="flex gap-3 mt-2 text-sm text-muted-foreground">
-                      <span className="flex items-center gap-1">
-                        <Clock className="h-3.5 w-3.5" />
-                        {recipe.time}
-                      </span>
-                      <span className="px-2 py-0.5 rounded-full bg-accent text-accent-foreground text-xs font-medium">
+              <Link to={`/recipe/${recipe.id}`} key={recipe.id}>
+                <Card className="group cursor-pointer hover:shadow-medium transition-all duration-300 border-border overflow-hidden h-full">
+                  <div className="relative h-40 overflow-hidden">
+                    <img 
+                      src={recipe.image} 
+                      alt={recipe.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 to-transparent" />
+                    <div className="absolute bottom-3 left-3 right-3">
+                      <span className="px-2 py-1 rounded-full bg-background/90 text-foreground text-xs font-medium">
                         {recipe.difficulty}
                       </span>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
+                  <CardContent className="p-4">
+                    <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-1">
+                      {recipe.title}
+                    </h3>
+                    <div className="flex items-center gap-4 mt-2 text-sm text-muted-foreground">
+                      <span className="flex items-center gap-1">
+                        <Clock className="h-3.5 w-3.5" />
+                        {recipe.time}
+                      </span>
+                      <span>{recipe.servings} servings</span>
+                      <span>{recipe.calories} cal</span>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
         </section>
